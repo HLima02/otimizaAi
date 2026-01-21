@@ -55,7 +55,5 @@ const styles = StyleSheet.create({
   },
   rowCardBox: {
     marginTop: 120,
-    alignItems: 'center',
-    justifyContent: 'flex-start'
   }
 })
