@@ -24,9 +24,8 @@ export default function Home() {
           <FlatList 
           data={addressList}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => (
-            <RowCardItem>{ item }</RowCardItem>
-            // <RowCardItem>{ item.description }</RowCardItem>
+          renderItem={({ item, index }) => (
+            <RowCardItem address={item} />
           )}
           />
         }

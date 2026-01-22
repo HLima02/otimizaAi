@@ -12,11 +12,7 @@ type AppProviderProps = {
 const AppContext = createContext<AppContextData>({} as AppContextData)
 
 export function AppProvider({ children }:AppProviderProps) {
-  const [addressList, setAddressList] = useState([
-    'Av. Gen. Ataliba Leonel, 3173 - Parada Inglesa, São Paulo - SP, Brasil',
-    'Rua Senador Felício dos Santos, 347 - Aclimação, São Paulo - SP, Brasil',
-    'Rua Baltazar Lisboa, 487 - Vila Mariana, São Paulo - SP, Brasil'
-  ])
+  const [addressList, setAddressList] = useState([])
 
   return (
     <AppContext.Provider value={{addressList, setAddressList}}>
