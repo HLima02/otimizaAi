@@ -18,7 +18,10 @@ export default function AddressInput() {
     (async () => {
       const { status } = await Location.requestForegroundPermissionsAsync()
 
-      if(status !== "granted") return
+      if(status !== "granted") {
+        console.log("Sem permissão para acessar localização")
+        return
+      }
 
       const loc = await Location.getCurrentPositionAsync({})
       setUserLocation({
@@ -41,8 +44,8 @@ export default function AddressInput() {
     onPress={(data, details = null) => {
       setAddressList((prev:any) => [...prev, data])
       // setAddress(data.description);
-      //console.log("dados:", data);
-      console.log("detallhes:", data.description);
+      // console.log("dados:", data);
+      // console.log("detallhes:", data.description);
       placesRef.current?.setAddressText('');
     }}
     query={{
@@ -53,12 +56,13 @@ export default function AddressInput() {
       ? `${userLocation.lat},${userLocation.lng}`
       : undefined,
       radius: 5000,
-      type: "address"
+      types: "address"
     }}
     enablePoweredByContainer={false}
     styles={{
       textInput: isFocus ? styles.textInputFocus :  styles.textInput,
-      container: styles.inputContainer
+      container: styles.inputContainer,
+      listView: styles.listView
     }}
     textInputProps={{
       onFocus: () => setIsFocus(true),

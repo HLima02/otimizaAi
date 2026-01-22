@@ -26,6 +26,7 @@ export default function Home() {
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => (
             <RowCardItem>{ item }</RowCardItem>
+            // <RowCardItem>{ item.description }</RowCardItem>
           )}
           />
         }

@@ -14,7 +14,16 @@ export const styles = StyleSheet.create({
     marginTop: 30,
   },
   inputContainer: {
-    width: '95%'
+    width: '95%',
+    flex: 0
+  },
+  listView: {
+    position: "absolute",
+    top: 90,
+    width: "100%",
+    zIndex: 999,
+    elevation: 999, // Android
+    backgroundColor: "#fff",
   },
   textInputFocus: {
     borderWidth: 1,
