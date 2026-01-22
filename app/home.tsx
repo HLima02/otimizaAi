@@ -1,13 +1,14 @@
 import AddressInput from "@/components/AddressInput";
 import RowCardItem from "@/components/RowCardItem";
 import { useApp } from "@/context/AppContext";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { useRouter } from "expo-router";
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const apiUrl = process.env.EXPO_PUBLIC_GOOGLE_MAPS_API_KEY ;
 
 export default function Home() {
   const { addressList, setAddressList } = useApp()
-  
+  const route = useRouter()
   return (
     <View style={{flex: 1}}>
       <View style={styles.box} >
@@ -29,6 +30,15 @@ export default function Home() {
           )}
           />
         }
+      </View>
+
+      <View style={styles.btnContainer}>
+        <TouchableOpacity 
+        disabled={addressList.length > 0 ? false : true} 
+        style={addressList.length > 0 ? styles.checkBtn : styles.checkBtnDisabled}  
+        onPress={() => route.navigate('/addressList')}>
+          <Text style={{color: '#fff', textAlign: 'center', fontSize: 18}}>Conferir lista completa</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -55,5 +65,30 @@ const styles = StyleSheet.create({
   },
   rowCardBox: {
     marginTop: 120,
+  },
+  btnContainer: {
+    position: 'absolute',
+    bottom: 40,
+    width: '100%',
+    zIndex: 200,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  checkBtn: {
+    backgroundColor: '#000',
+    width: '90%',
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+    borderRadius: 20,
+    justifyContent: 'center'
+  },
+  checkBtnDisabled: {
+    backgroundColor: '#000',
+    width: '90%',
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+    borderRadius: 20,
+    justifyContent: 'center',
+    opacity: 0.5
   }
 })
