@@ -1,4 +1,5 @@
 import { useApp } from "@/context/AppContext";
+import { BottomSheetTextInput } from '@gorhom/bottom-sheet';
 import * as Location from "expo-location";
 import { useEffect, useRef, useState } from 'react';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
@@ -67,6 +68,7 @@ export default function AddressInput() {
     textInputProps={{
       onFocus: () => setIsFocus(true),
       onBlur: () => setIsFocus(false),
+      InputComp: BottomSheetTextInput,
     }}
   />
   )

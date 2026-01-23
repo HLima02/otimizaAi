@@ -19,6 +19,7 @@ export default function Home() {
         <RouteMap />
         <RouteMapBottomSheet />
       </View>
+      
 
 
       {/* <View style={{ alignItems: 'center'}}>

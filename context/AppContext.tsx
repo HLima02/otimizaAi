@@ -2,7 +2,7 @@ import * as Location from "expo-location";
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 type AppContextData = {
-  addressList: string[]
+  addressList: any
   setAddressList: any
   userLocation: any,
   setUserLocation: any
@@ -15,7 +15,16 @@ type AppProviderProps = {
 const AppContext = createContext<AppContextData>({} as AppContextData)
 
 export function AppProvider({ children }:AppProviderProps) {
-  const [addressList, setAddressList] = useState([])
+  const [addressList, setAddressList] = useState([
+    {
+      id: 1,
+      title: 'Avenida General atalba leonel, 3173'
+    },
+    {
+      id: 2,
+      title: 'Rua Baltazar Lisboa, 487'
+    },
+  ])
   const [userLocation, setUserLocation] = useState<any>(null)
 
   useEffect(() => {
