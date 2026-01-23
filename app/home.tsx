@@ -1,22 +1,27 @@
-import AddressInput from "@/components/AddressInput";
-import RowCardItem from "@/components/RowCardItem";
+import HeaderTitle from "@/components/HeaderTitle";
+import RouteMap from "@/components/RouteMap";
+import RouteMapBottomSheet from "@/components/RouteMapBottomSheet";
 import { useApp } from "@/context/AppContext";
-import { useRouter } from "expo-router";
-import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useNavigation } from "expo-router";
+import { StyleSheet, View } from "react-native";
 
 const apiUrl = process.env.EXPO_PUBLIC_GOOGLE_MAPS_API_KEY ;
 
 export default function Home() {
   const { addressList, setAddressList } = useApp()
-  const route = useRouter()
+  const navigate = useNavigation()
+
   return (
     <View style={{flex: 1}}>
-      <View style={styles.box} >
-        <Text style={styles.boxTitle}>Roteirize seus endereços</Text>
-        {/* <AddressInput /> */}
+      <HeaderTitle>Roteirize seus endereços</HeaderTitle>
+
+      <View style={{flex: 1}}>
+        <RouteMap />
+        <RouteMapBottomSheet />
       </View>
 
-      <View style={{ alignItems: 'center'}}>
+
+      {/* <View style={{ alignItems: 'center'}}>
         <AddressInput/>
       </View>
 
@@ -36,10 +41,10 @@ export default function Home() {
         <TouchableOpacity 
         disabled={addressList.length > 0 ? false : true} 
         style={addressList.length > 0 ? styles.checkBtn : styles.checkBtnDisabled}  
-        onPress={() => route.navigate('/addressList')}>
+        onPress={() => navigate.navigate('addressList')}>
           <Text style={{color: '#fff', textAlign: 'center', fontSize: 18}}>Conferir lista completa</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 }
