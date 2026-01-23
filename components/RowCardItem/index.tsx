@@ -9,7 +9,7 @@ export default function RowCardItem({ address, children }:any) {
 
   function handleDelete() {
     const newList = addressList.filter(
-      (item:any) => item.place_id !== address.place_id
+      (item:any) => item.data.place_id !== address.place_id
     )
     setAddressList(newList)
   }
