@@ -12,5 +12,12 @@ export const styles = StyleSheet.create({
   containerTitle: {
     fontSize: 19,
     fontWeight: 'bold'
+  },
+  addressList: {
+    marginTop: 130,
+    marginHorizontal: 8
+  },
+  empty: {
+    color: '#000'
   }
 })

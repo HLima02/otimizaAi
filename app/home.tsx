@@ -19,33 +19,6 @@ export default function Home() {
         <RouteMap />
         <RouteMapBottomSheet />
       </View>
-      
-
-
-      {/* <View style={{ alignItems: 'center'}}>
-        <AddressInput/>
-      </View>
-
-      <View style={styles.rowCardBox}>
-        {addressList.length > 0 && 
-          <FlatList 
-          data={addressList}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item, index }) => (
-            <RowCardItem address={item} />
-          )}
-          />
-        }
-      </View>
-
-      <View style={styles.btnContainer}>
-        <TouchableOpacity 
-        disabled={addressList.length > 0 ? false : true} 
-        style={addressList.length > 0 ? styles.checkBtn : styles.checkBtnDisabled}  
-        onPress={() => navigate.navigate('addressList')}>
-          <Text style={{color: '#fff', textAlign: 'center', fontSize: 18}}>Conferir lista completa</Text>
-        </TouchableOpacity>
-      </View> */}
     </View>
   );
 }

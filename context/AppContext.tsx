@@ -15,16 +15,7 @@ type AppProviderProps = {
 const AppContext = createContext<AppContextData>({} as AppContextData)
 
 export function AppProvider({ children }:AppProviderProps) {
-  const [addressList, setAddressList] = useState([
-    {
-      id: 1,
-      title: 'Avenida General atalba leonel, 3173'
-    },
-    {
-      id: 2,
-      title: 'Rua Baltazar Lisboa, 487'
-    },
-  ])
+  const [addressList, setAddressList] = useState([])
   const [userLocation, setUserLocation] = useState<any>(null)
 
   useEffect(() => {

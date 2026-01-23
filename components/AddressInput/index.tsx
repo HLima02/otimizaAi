@@ -44,6 +44,7 @@ export default function AddressInput() {
     fetchDetails={true}
     onPress={(data, details = null) => {
       setAddressList((prev:any) => [...prev, data])
+      console.log(addressList)
       // setAddress(data.description);
       // console.log("dados:", data);
       // console.log("detallhes:", data.description);
