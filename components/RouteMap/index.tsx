@@ -4,7 +4,7 @@ import MapView, { Marker } from 'react-native-maps'
 import { styles } from './style'
 
 export default function RouteMap() {
-  const { userLocation } = useApp()
+  const { userLocation, addressList } = useApp()
 
   if(userLocation == null){
     return(
@@ -25,13 +25,18 @@ export default function RouteMap() {
           longitudeDelta: 0.05,
         }}
       >
-        <Marker
-          coordinate={{
-            latitude: userLocation.coords.latitude,
-            longitude: userLocation.coords.longitude,
-          }}
-          title="Centro de SP"
-        />
+        {
+          addressList.map((item:any, index:any) => (
+            <Marker 
+              key={index}
+              coordinate={{
+                latitude: item.details.geometry.location.lat,
+                longitude: item.details.geometry.location.lng,
+              }}
+              title={item.details.short_name}
+            />
+          ))
+        }
       </MapView>
     </View>
   )

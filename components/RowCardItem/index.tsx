@@ -6,7 +6,6 @@ import { styles } from './style';
 
 export default function RowCardItem({ address, children }:any) {
   const { addressList, setAddressList } = useApp()
-  //console.log(address.placeId)
 
   function handleDelete() {
     const newList = addressList.filter(

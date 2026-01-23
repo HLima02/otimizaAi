@@ -1,7 +1,6 @@
 import { useApp } from "@/context/AppContext";
 import { BottomSheetTextInput } from '@gorhom/bottom-sheet';
-import * as Location from "expo-location";
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 import { styles } from "./style";
@@ -15,24 +14,6 @@ export default function AddressInput() {
   const [userLocation, setUserLocation] = useState<any>(null)
   const { addressList, setAddressList } = useApp()
 
-  useEffect(() => {
-    (async () => {
-      const { status } = await Location.requestForegroundPermissionsAsync()
-
-      if(status !== "granted") {
-        console.log("Sem permissão para acessar localização")
-        return
-      }
-
-      const loc = await Location.getCurrentPositionAsync({})
-      setUserLocation({
-        lat: loc.coords.latitude,
-        lng: loc.coords.longitude
-      })
-    })()
-
-  }, [])
-
   return (
    <GooglePlacesAutocomplete
     ref={placesRef}
@@ -43,8 +24,8 @@ export default function AddressInput() {
     onNotFound={() => console.log("Nada encontrado")}
     fetchDetails={true}
     onPress={(data, details = null) => {
-      setAddressList((prev:any) => [...prev, data])
-      console.log(addressList)
+      setAddressList((prev:any) => [...prev, {data, details}])
+      //console.log(addressList)
       // setAddress(data.description);
       // console.log("dados:", data);
       // console.log("detallhes:", data.description);

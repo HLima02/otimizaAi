@@ -36,7 +36,7 @@ const App = () => {
       <View style={{marginTop: 120, paddingHorizontal: 8}}>
         {addressList.length > 0 && 
           addressList.map((item: any, index:any) => (
-            <RowCardItem address={item} />
+            <RowCardItem key={index} address={item.data} />
           ))
         }
       </View>
