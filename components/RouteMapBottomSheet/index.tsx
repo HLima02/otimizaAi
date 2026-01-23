@@ -1,7 +1,8 @@
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import React, { useCallback, useRef } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { Text } from 'react-native';
 import AddressInput from '../AddressInput';
+import { styles } from './style';
 
 const App = () => {
   // ref
@@ -22,20 +23,12 @@ const App = () => {
       keyboardBlurBehavior="restore"
     >
       <BottomSheetView style={styles.contentContainer}>
-        <Text>Adicoinar paradas</Text>
+        <Text style={styles.containerTitle}>Adicionar paradas</Text>
 
         <AddressInput />
       </BottomSheetView>
     </BottomSheet>
   );
 };
-
-const styles = StyleSheet.create({
-  contentContainer: {
-    flex: 1,
-    padding: 36,
-    alignItems: 'center',
-  },
-});
 
 export default App;

@@ -11,10 +11,10 @@ export const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 1},
     shadowOpacity: 0.1,
     shadowRadius: 3,
-    marginTop: 30,
+    marginTop: 20,
   },
   inputContainer: {
-    width: '95%',
+    width: '98%',
     flex: 0
   },
   listView: {
@@ -35,6 +35,6 @@ export const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 1},
     shadowOpacity: 0.1,
     shadowRadius: 3,
-    marginTop: 30,
+    marginTop: 20,
   },
 })

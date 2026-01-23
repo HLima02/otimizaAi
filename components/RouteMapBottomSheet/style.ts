@@ -1,9 +1,16 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  content: {
+  contentContainer: {
     flex: 1,
-    padding: 16,
+    paddingHorizontal: 15,
+    paddingTop: 10,
+    paddingBottom: 36,
+    alignItems: 'center',
+    width: '100%'
   },
-   
+  containerTitle: {
+    fontSize: 19,
+    fontWeight: 'bold'
+  }
 })
