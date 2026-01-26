@@ -19,5 +19,5 @@ export const styles = StyleSheet.create({
   },
   empty: {
     color: '#000'
-  }
+  },
 })

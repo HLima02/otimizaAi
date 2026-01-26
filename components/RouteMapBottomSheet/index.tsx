@@ -19,7 +19,7 @@ const App = () => {
   // renders
   return (
     <BottomSheet
-      snapPoints={['25%', '50%', '80%']}
+      snapPoints={['30%', '60%', '100%']}
       ref={bottomSheetRef}
       //onChange={handleSheetChanges}
       keyboardBehavior="interactive"
