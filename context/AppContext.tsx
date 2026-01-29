@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Location from "expo-location";
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
@@ -18,6 +19,19 @@ export function AppProvider({ children }:AppProviderProps) {
   const [addressList, setAddressList] = useState([])
   const [userLocation, setUserLocation] = useState<any>(null)
 
+  async function getStorageAddress() {
+    try {
+      const data = await AsyncStorage.getItem('@address')
+
+      if(data) {
+        const list = JSON.parse(data)
+        setAddressList(list)
+      }
+    } catch(error) {
+      console.log('Erro ao buscar endereços do Storage', error)
+    }
+  }
+
   useEffect(() => {
     (async () => {
       const { status } = await Location.requestForegroundPermissionsAsync()
@@ -29,8 +43,8 @@ export function AppProvider({ children }:AppProviderProps) {
 
       const loc = await Location.getCurrentPositionAsync({})
       setUserLocation(loc)
+      getStorageAddress()
     })()
-
   }, [])
 
   return (
