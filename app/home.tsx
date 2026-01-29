@@ -1,103 +1,76 @@
-import HeaderTitle from "@/components/HeaderTitle";
-import RouteMap from "@/components/RouteMap";
-import RouteMapBottomSheet from "@/components/RouteMapBottomSheet";
-import { useApp } from "@/context/AppContext";
-import { useNavigation } from "expo-router";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import AntDesign from '@expo/vector-icons/AntDesign';
+import { BlurView } from 'expo-blur';
+import { ImageBackground } from 'expo-image';
+import React from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-const apiUrl = process.env.EXPO_PUBLIC_GOOGLE_MAPS_API_KEY ;
+import backgroundImage from '../assets/images/initial_background.jpg';
 
-export default function Home() {
-  const { addressList, setAddressList } = useApp()
-  const navigation = useNavigation()
-
+export default function home() {
   return (
-    <View style={{flex: 1}}>
-      <HeaderTitle>Roteirize seus endereços</HeaderTitle>
+    <View style={styles.containerBox}>
+      <ImageBackground 
+      source={backgroundImage} 
+      style={{flex: 1}}
+      >
+        <View style={styles.overlay} />
+        <View style={styles.content}>
+          <Text style={styles.title}>Criar rota</Text>
 
-      <View style={{flex: 1}}>
-        <RouteMap />
-        <RouteMapBottomSheet />
-
-        {addressList.length > 0 && 
-          <View style={styles.RouteCtaContainer}>
-            <TouchableOpacity style={styles.RouteCta}
-            onPress={() => navigation.navigate('addressList')}>
-              <Text style={styles.RouteCtaText}>Roteirizar paradas</Text>
-            </TouchableOpacity>
-          </View>
-        }
-      </View>
+          <TouchableOpacity style={styles.wrapper}>
+            <BlurView intensity={40} tint='light' style={styles.blur}>
+              <View style={styles.inner}>
+                <AntDesign name="plus" size={40} color="#fff" />
+              </View>
+            </BlurView>
+          </TouchableOpacity>
+        </View>
+        
+        
+      </ImageBackground >
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
-  box: {
-   backgroundColor: 'darkblue',
-   paddingTop: 60,
-   paddingBottom: 25,
-   alignItems:'center',
-   borderBottomLeftRadius: 55,
-   borderBottomRightRadius: 55,
-   shadowColor: '#000',
-   shadowOffset: {width: 0, height: 2},
-   shadowOpacity: 0.1,
-   shadowRadius: 10,
-   elevation: 5,
+  containerBox: {
+    flex: 1
   },
-  boxTitle: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold'
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)'
   },
-  rowCardBox: {
-    marginTop: 120,
-  },
-  btnContainer: {
-    position: 'absolute',
-    bottom: 40,
-    width: '100%',
-    zIndex: 200,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  checkBtn: {
-    backgroundColor: '#000',
-    width: '90%',
-    paddingHorizontal: 20,
-    paddingVertical: 20,
-    borderRadius: 20,
-    justifyContent: 'center'
-  },
-  checkBtnDisabled: {
-    backgroundColor: '#000',
-    width: '90%',
-    paddingHorizontal: 20,
-    paddingVertical: 20,
-    borderRadius: 20,
-    justifyContent: 'center',
-    opacity: 0.5
-  },
-   RouteCtaContainer: {
-    width: '100%',
+  content: {
     flex: 1,
-    alignItems: 'center',
-    position: 'absolute',
-    bottom: 30,
-    zIndex: 200
+    padding: 24,
+    zIndex: 2,
+    justifyContent: 'center',
+    gap: 30
   },
-  RouteCta: {
-    backgroundColor: '#000',
-    width: '90%',
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-    borderRadius: 15
-  },
-  RouteCtaText: {
-    fontSize: 18,
+  title: {
     color: '#fff',
+    fontSize: 32,
     fontWeight: 'bold',
     textAlign: 'center'
+  },
+  wrapper:{
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    overflow: 'hidden',
+    marginHorizontal: 'auto',
+  },
+  blur: {
+    flex: 1,
+    borderRadius: 50
+  },
+  inner: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255,255,255,0.15)',
+    borderWidth:2,
+    borderColor: 'rgba(255,255,255,0.35)',
+    borderRadius: 50
   }
 })

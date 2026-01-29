@@ -9,6 +9,7 @@ export default function RootLayout() {
       <AppProvider>
         <Stack>
           <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="createRoute" options={{ headerShown: false }} />
           <Stack.Screen name="addressList" options={{ headerShown: false }} />
         </Stack>
       </AppProvider>

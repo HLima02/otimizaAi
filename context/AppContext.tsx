@@ -6,7 +6,9 @@ type AppContextData = {
   addressList: any
   setAddressList: any
   userLocation: any,
-  setUserLocation: any
+  setUserLocation: any,
+  userData: any,
+  setUserData: any
 }
 
 type AppProviderProps = {
@@ -16,9 +18,32 @@ type AppProviderProps = {
 const AppContext = createContext<AppContextData>({} as AppContextData)
 
 export function AppProvider({ children }:AppProviderProps) {
+  const [userData, setUserData] = useState({
+    userId: 'user_01',
+    name: "Hiago Lima",
+    email: "hiago.liima02@hotmail.com",
+    phone: "(13)997716553",
+    photoUrl: "../assets/images/initial_background.jpg",
+    createdAt: "29/01/2026",
+    workProfile: {
+      platforms: ['Shopee'],
+      routes: [],
+      avgDeliveriesPerDay: 0
+    },
+    subscription: {
+      plan: "free",
+      status: true,
+      expiresAt: null
+    },
+    stats: {
+      totalRoutes: 0,
+      totalPackages: 0
+    }
+  })
   const [addressList, setAddressList] = useState([])
   const [userLocation, setUserLocation] = useState<any>(null)
 
+  //busca rotas do storage
   async function getStorageAddress() {
     try {
       const data = await AsyncStorage.getItem('@address')
@@ -32,7 +57,8 @@ export function AppProvider({ children }:AppProviderProps) {
     }
   }
 
-  useEffect(() => {
+  //UseEffect para pedir permissão para uso da localização do usuário
+  useEffect(() => { 
     (async () => {
       const { status } = await Location.requestForegroundPermissionsAsync()
 
@@ -48,7 +74,7 @@ export function AppProvider({ children }:AppProviderProps) {
   }, [])
 
   return (
-    <AppContext.Provider value={{addressList, setAddressList, userLocation, setUserLocation}}>
+    <AppContext.Provider value={{addressList, setAddressList, userLocation, setUserLocation, userData, setUserData}}>
       {children}
     </AppContext.Provider>
   )
