@@ -1,15 +1,12 @@
 import { Redirect } from 'expo-router'
 import React from 'react'
-import Home from './home'
 
 export default function index() {
-  const logged = false 
+  const logged = true 
 
   if(!logged) {
     return <Redirect href='/(auth)/signin' /> 
   }
 
-  return (
-    <Home />
-  )
+  return  <Redirect href='/(root)/dashBoard' /> 
 }
