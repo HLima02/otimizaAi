@@ -1,12 +1,14 @@
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { BlurView } from 'expo-blur';
 import { ImageBackground } from 'expo-image';
+import { useRouter } from 'expo-router';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import backgroundImage from '../assets/images/initial_background.jpg';
 
 export default function home() {
+  const route = useRouter()
   return (
     <View style={styles.containerBox}>
       <ImageBackground 
@@ -17,7 +19,9 @@ export default function home() {
         <View style={styles.content}>
           <Text style={styles.title}>Criar rota</Text>
 
-          <TouchableOpacity style={styles.wrapper}>
+          <TouchableOpacity 
+          style={styles.wrapper}
+          onPress={() => route.navigate('/createRoute')}>
             <BlurView intensity={40} tint='light' style={styles.blur}>
               <View style={styles.inner}>
                 <AntDesign name="plus" size={40} color="#fff" />
