@@ -23,7 +23,7 @@ export function AppProvider({ children }:AppProviderProps) {
     name: "Hiago Lima",
     email: "hiago.liima02@hotmail.com",
     phone: "(13)997716553",
-    photoUrl: "../assets/images/initial_background.jpg",
+    photoUrl: "@/assets/images/initial_background.jpg",
     createdAt: "29/01/2026",
     workProfile: {
       platforms: ['Shopee'],
@@ -37,11 +37,20 @@ export function AppProvider({ children }:AppProviderProps) {
     },
     stats: {
       totalRoutes: 0,
-      totalPackages: 0
+      totalPackages: 0,
+      totalEarningsMonth: 0
+    },
+    financialProfile: {
+      currentMonthGoal: 5000,
+      currentMonthEarnings: 0,
+      goalProgressPercent: 0
     }
   })
+  const [routes, setRoutes] = useState([])
+  const [financialHistory, setFinancialHistory] = useState([])
+  const [monthlyGoal, setMonthlyGoal] = useState(null)
   const [addressList, setAddressList] = useState([])
-  const [userLocation, setUserLocation] = useState<any>(null)
+  const [userLocation, setUserLocation] = useState(null)
 
   //busca rotas do storage
   async function getStorageAddress() {
