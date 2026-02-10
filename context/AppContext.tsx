@@ -42,7 +42,7 @@ export function AppProvider({ children }:AppProviderProps) {
     },
     financialProfile: {
       currentMonthGoal: 5000,
-      currentMonthEarnings: 300,
+      currentMonthEarnings: 3000,
       goalProgressPercent: 0
     }
   })

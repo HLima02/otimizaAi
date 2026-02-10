@@ -8,16 +8,14 @@ const radius = 100
 const strokeWidth = 20
 const size = 250
 const circumference = 2 * Math.PI * radius
-const progress = 0.75
 
 export default function ProgressCircle({currentGoal, currentEarning }:any) {
   const goalProgressPercent = (currentEarning * 100) / currentGoal
-
-  console.log(goalProgressPercent)
+  const progressTeste = goalProgressPercent / 100
 
   return (
     <View style={{ width: size, height: size }}>
-      <Svg width={300} height={250} >
+      <Svg width={size} height={size} >
         <Circle
           stroke="#eee"
           fill="none"
@@ -34,7 +32,7 @@ export default function ProgressCircle({currentGoal, currentEarning }:any) {
           r={radius}
           strokeWidth={strokeWidth}
           strokeDasharray={circumference}
-          strokeDashoffset={circumference * (1 - progress)}
+          strokeDashoffset={circumference * (1 - progressTeste)}
           strokeLinecap="round"
         />
       </Svg>
