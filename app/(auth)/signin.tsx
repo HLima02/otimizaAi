@@ -2,12 +2,51 @@ import React, { useState } from 'react'
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
+import { useSignIn } from '@clerk/clerk-expo'
+
 import logo from '@/assets/images/icon.png'
-import { Link } from 'expo-router'
+import { Link, useRouter } from 'expo-router'
 
 export default function SignIn() {
+  const { isLoaded, signIn, setActive } = useSignIn()
+  const router = useRouter()
+  const [code, setCode] = React.useState('')
+  const [showEmailCode, setShowEmailCode] = React.useState(false)
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState("")
+
+  async function handleSignIn(){
+    if(email === '' || password === '') {
+      alert("Por favor, preencha os campos de email e senha para fazer o login!")
+      return
+    }
+
+    if (!isLoaded) return
+
+    try {
+      const signInAttemp = await signIn.create({
+        identifier: email,
+        password
+      })
+
+      if(signInAttemp.status === 'complete') {
+        await setActive({
+          session: signInAttemp.createdSessionId,
+          navigate: async ({ session }) => {
+            if(session?.currentTask) {
+              console.log(session?.currentTask)
+              return
+            }
+
+            router.replace('/(root)/(tabs)/dashBoard')
+          }
+        })
+      }
+    } catch(error) {
+      console.error(JSON.stringify(error, null, 2))
+    }
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -22,6 +61,7 @@ export default function SignIn() {
         style={styles.inputStyle} />
         <TextInput
         placeholder='Senha'
+        secureTextEntry
         value={password}
         onChangeText={(val) => setPassword(val)}
         style={styles.inputStyle} />
@@ -32,7 +72,8 @@ export default function SignIn() {
       </View>
 
       <View style={styles.inputContainer}>
-        <TouchableOpacity style={styles.login}>
+        <TouchableOpacity style={styles.login}
+        onPress={handleSignIn}>
           <Text style={{
             fontWeight: 'bold', 
             fontSize: 20,
