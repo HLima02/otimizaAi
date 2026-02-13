@@ -8,7 +8,8 @@ type AppContextData = {
   userLocation: any,
   setUserLocation: any,
   userData: any,
-  setUserData: any
+  setUserData: any,
+  routes: any
 }
 
 type AppProviderProps = {
@@ -46,7 +47,34 @@ export function AppProvider({ children }:AppProviderProps) {
       goalProgressPercent: 0
     }
   })
-  const [routes, setRoutes] = useState([])
+  const [routes, setRoutes] = useState([
+    {
+      "userId": "user_01",
+      "routeName": "Rota 01",
+      "routeId": "wefdsarger",
+      "date": "2026-02-01",
+      "status": "completed",
+      "summary": {
+        "totalStops": 18,
+        "totalPackages": 36,
+        "distanceKm": 42.5,
+        "earnings": 280
+      }
+    },
+    {
+      "userId": "user_01",
+      "routeName": "Rota 02",
+      "routeId": "gatyyry53",
+      "date": "2026-02-02",
+      "status": "completed",
+      "summary": {
+        "totalStops": 33,
+        "totalPackages": 50,
+        "distanceKm": 67.4,
+        "earnings": 48
+      }
+    }
+  ])
   const [financialHistory, setFinancialHistory] = useState([])
   const [monthlyGoal, setMonthlyGoal] = useState(null)
   const [addressList, setAddressList] = useState([])
@@ -83,7 +111,15 @@ export function AppProvider({ children }:AppProviderProps) {
   }, [])
 
   return (
-    <AppContext.Provider value={{addressList, setAddressList, userLocation, setUserLocation, userData, setUserData}}>
+    <AppContext.Provider value={{
+      addressList, 
+      setAddressList, 
+      userLocation, 
+      setUserLocation, 
+      userData, 
+      setUserData,
+      routes
+      }}>
       {children}
     </AppContext.Provider>
   )
